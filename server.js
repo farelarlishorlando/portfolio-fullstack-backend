@@ -7,7 +7,16 @@ import contactRoutes from "./routes/contactRoutes.js";
 
 dotenv.config();
 const app = express();
-app.use(cors({ origin: "http://localhost:3000" })); // limit to frontend
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://portfolio-fullstack-azure.vercel.app", // <– tambahkan domain vercel kamu di sini
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 mongoose
